@@ -1,0 +1,50 @@
+/******  VP <  460 *******/
+
+#map {
+  height: 350px;
+}
+/* ====================== Header ====================== */
+
+
+
+/* ====================== Restaurant Filtering ====================== */
+
+.filter-options {
+    width: 100%;
+    min-height: 120px;
+  }
+  .filter-options h2 {
+    display: block;
+}
+  .filter-options select {
+    height: 40px;
+    margin: 5px 2.5%;
+    width: 95%;
+    max-width: 200px;
+    box-sizing: border-box;
+  }
+  .filter-options select:focus {
+    outline: 0;
+    box-shadow: 0 0 2px 2px #ff6600 ;
+  }
+  .restaurants-list {
+    display:block;
+      margin: 0 auto;
+      padding: 10px 0;
+      width: 100%;
+  }
+  .restaurants-list-item {
+    width: 96%;
+}
+
+.inside #map-container {
+  background: blue none repeat scroll 0 0;
+  height: 350px;
+  position: static;
+  width: 100%;
+}
+.inside #map {
+  background-color: #ccc;
+  height: 100%;
+  width: 100%;
+}

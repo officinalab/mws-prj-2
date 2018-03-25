@@ -162,6 +162,7 @@ class DBHelper {
       title: restaurant.name,
       url: DBHelper.urlForRestaurant(restaurant),
       map: map,
+      icon: "../img/resto-icon.png",
       animation: google.maps.Animation.DROP}
     );
     return marker;

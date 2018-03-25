@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
+
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
@@ -8,7 +11,7 @@ body,td,th,p{
 	line-height: 1.5;
 }
 body {
-	background-color: #fdfdfd;
+	background-color: #333;
 	margin: 0;
 	position:relative;
 }
@@ -18,7 +21,7 @@ ul, li {
 	color: #333;
 }
 a {
-	color: orange;
+	color: #ff6600;
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -36,7 +39,8 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 	display: block;
 }
 #maincontent {
-  background-color: #f3f3f3;
+  background-color: #000;
+  color: #fff;
   min-height: 100%;
 }
 #footer {
@@ -49,9 +53,16 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-transform: uppercase;
 }
 /* ====================== Navigation ====================== */
+header {
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #ff6600;
+  border-bottom: 1px solid #ff6600;
+}
 nav {
   width: 100%;
-  height: 80px;
+  z-index:1;
+
   background-color: #252831;
   text-align:center;
 }
@@ -59,10 +70,13 @@ nav h1 {
   margin: auto;
 }
 nav h1 a {
+  display: block;
+  min-height : 48px;
+  line-height: 2.5;
   color: #fff;
-  font-size: 14pt;
-  font-weight: 200;
-  letter-spacing: 10px;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 4px;
   text-transform: uppercase;
 }
 #breadcrumb {
@@ -99,23 +113,32 @@ nav h1 a {
 }
 /* ====================== Map ====================== */
 #map {
+  margin: 0 auto;
   height: 400px;
   width: 100%;
-  background-color: #ccc;
+  background-color: #222;
+  max-width: 1024px;
 }
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  height: 50px;
-  background-color: #3397DB;
+  background-color: #222;
   align-items: center;
+  padding-top: 5px;
+  text-align: center;
+  border-top: 1px solid #ff6600;
+  border-bottom: 1px solid #ff6600;
 }
 .filter-options h2 {
+  display: inline-block;
+  text-align: center;
   color: white;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1;
-  margin: 0 20px;
+  margin: 0 auto;
+  max-width: 200px;
 }
 .filter-options select {
   background-color: white;
@@ -130,33 +153,36 @@ nav h1 a {
 }
 
 /* ====================== Restaurant Listing ====================== */
-#restaurants-list {
-  background-color: #f3f3f3;
+.restaurants-list {
+  background-color: #000;
   list-style: outside none none;
   margin: 0;
   padding: 30px 15px 60px;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
-#restaurants-list li {
+.restaurants-list-item {
   background-color: #fff;
   border: 2px solid #ccc;
   font-family: Arial,sans-serif;
-  margin: 15px;
+  margin: 15px auto;
   min-height: 380px;
-  padding: 0 30px 25px;
-  text-align: left;
-  width: 270px;
+  padding: 0 0 10px 0;
+  text-align: center;
+
+  max-width: 400px;
 }
-#restaurants-list .restaurant-img {
+.restaurants-list .restaurant-img {
   background-color: #ccc;
   display: block;
   margin: 0;
   max-width: 100%;
-  min-height: 248px;
-  min-width: 100%;
+  max-height: 100%;
+  width: 100%;
 }
-#restaurants-list li h1 {
-  color: #f18200;
+.restaurants-list-item h1 {
+  color: #ff6600;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -169,8 +195,8 @@ nav h1 a {
   margin: 0;
   font-size: 11pt;
 }
-#restaurants-list li a {
-  background-color: orange;
+.restaurants-list-item a {
+  background-color: #ff6600;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -205,10 +231,10 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: 100%;
 }
 #restaurant-name {
-  color: #f18200;
+  color: #ff6600;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -246,7 +272,7 @@ nav h1 a {
   padding: 30px 40px 80px;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: #ff6600;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -273,3 +299,6 @@ nav h1 a {
 #restaurant-hours td {
   color: #666;
 }
+
+
+/* ====================== GRID ====================== */
