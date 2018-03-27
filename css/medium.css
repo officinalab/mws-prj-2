@@ -6,3 +6,15 @@
 .filter-options h2 {
     display: block;
 }
+
+.inside #map-container {
+    height: 350px;
+    position: static;
+    width: 100%;
+  }
+  #restaurant-img {
+    width: 100%;
+  }
+  #restaurant-container, #reviews-container {
+    width: 96%;
+  }

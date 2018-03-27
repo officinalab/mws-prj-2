@@ -47,6 +47,16 @@ fetchRestaurantFromURL = (callback) => {
 
 /**
  * Create restaurant HTML and add it to the webpage
+
+ <img srcset="elva-fairy-320w.jpg 320w,
+             elva-fairy-480w.jpg 480w,
+             elva-fairy-800w.jpg 800w"
+     sizes="(max-width: 320px) 280px,
+            (max-width: 480px) 440px,
+            800px"
+     src="elva-fairy-800w.jpg" alt="Elva habillée en fée">
+
+
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
@@ -118,15 +128,19 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
+  name.classList.add("rewiew-name");
   name.innerHTML = review.name;
   li.appendChild(name);
 
   const date = document.createElement('p');
+  date.classList.add("rewiew-date");
   date.innerHTML = review.date;
   li.appendChild(date);
 
   const rating = document.createElement('p');
+  rating.classList.add("rewiew-rating");
   rating.innerHTML = `Rating: ${review.rating}`;
+
   li.appendChild(rating);
 
   const comments = document.createElement('p');

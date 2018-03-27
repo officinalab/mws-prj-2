@@ -1,5 +1,29 @@
 /******  VP <  460 *******/
 
+@media screen and (max-width:250px){
+  nav h1 a span {
+    display:none;
+  }
+  nav h1 a:before {
+    content: "RR";
+
+  }
+}
+
+
+
+@media screen and (max-width:365px){
+  nav h1 a {
+    line-height: 1;
+  }
+  #map-container {
+    background: blue none repeat scroll 0 0;
+    margin-top: 50px;
+  }
+}
+
+
+
 #map {
   height: 350px;
 }
@@ -36,15 +60,14 @@
   .restaurants-list-item {
     width: 96%;
 }
-
 .inside #map-container {
-  background: blue none repeat scroll 0 0;
   height: 350px;
   position: static;
   width: 100%;
 }
-.inside #map {
-  background-color: #ccc;
-  height: 100%;
+#restaurant-img {
   width: 100%;
+}
+#restaurant-container, #reviews-container {
+  width: 96%;
 }
