@@ -87,6 +87,8 @@ nav {
   width: 100%;
   z-index: 1;
   background-color: #252831;
+}
+nav.title{
   text-align:center;
 }
 nav h1 {
@@ -321,7 +323,7 @@ nav h1 a:active,
 #reviews-container {
   padding: 30px 2% 80px 2%;
 }
-#reviews-container h2 {
+#reviews-container h3 {
   color: #cc5200;
   font-size: 24pt;
   font-weight: 300;

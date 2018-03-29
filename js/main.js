@@ -156,7 +156,7 @@ createRestaurantHTML = (restaurant) => {
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('srcset', createSrcs(image.src) );
   image.setAttribute('sizes','(min-width: 271px) 400w, 100vw' );
-  image.setAttribute('alt', `Picture of ${restaurant.name}.` );
+  image.setAttribute('alt', `${restaurant.name}, ${restaurant.cuisine_type} restaurant in ${restaurant.neighborhood}.` );
   li.classList.add("restaurants-list-item");
   li.append(image);
 
