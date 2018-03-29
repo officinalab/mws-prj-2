@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/styles.css" type="text/css">
   <link rel="stylesheet" href="css/small.css" media="screen and (max-width: 460px)">
   <link rel="stylesheet" href="css/medium.css" media="screen and (min-width: 461px) and (max-width:768px)">
-  <link rel="stylesheet" href="css/large.css" media="screen and (min-width: 769px) and (max-width:1024px)">
 
   <!-- FAVICON -->
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -38,21 +37,23 @@
   <main id="maincontent">
 
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <article id="restaurant-container">
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <table id="restaurant-hours"></table>
-    </section>
+      <h3 id="restaurant-cuisine"></h3>
+      <h4 id="restaurant-address"></h4>
+      <div id="restaurant-hours" role="table" aria-label="Restaurant hours"></div>
+    </article>
     <!-- end restaurant -->
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+
+    <section id="map-container" >
+       <a id="gotofilter" href="#reviews-container" class="gotofilter">Skip to reviews</a>
+      <div id="map" role="application" aria-label="google map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning reviews -->
-    <section id="reviews-container">
+    <section id="reviews-container" tabindex="0"  >
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
@@ -64,13 +65,15 @@
 </footer>
 <!-- End footer -->
 <!-- Beginning scripts -->
-  <!-- Database helpers -->
-  <script type="text/javascript" src="js/dbhelper.js"></script>
-  <!-- Main javascript file -->
-  <script type="text/javascript" src="js/restaurant_info.js"></script>
-  <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUu3WXHWeqmJiqdj_IcXBMWkkMd4y__3I&libraries=places&callback=initMap"></script>
-  <!-- End scripts -->
+<!-- Database helpers -->
+<script type="text/javascript" src="js/dbhelper.js"></script>
+<!-- Main javascript file -->
+<script type="text/javascript" src="js/restaurant_info.js"></script>
+<!-- Custom javascript file -->
+<script type="application/javascript" charset="utf-8" src="js/custom.js"></script>
+<!-- Google Maps -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUu3WXHWeqmJiqdj_IcXBMWkkMd4y__3I&libraries=places&callback=initMap"></script>
+<!-- End scripts -->
 
 </body>
 

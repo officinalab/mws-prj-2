@@ -150,7 +150,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`/images/${restaurant.photograph}`);
   }
 
   /**
@@ -162,7 +162,7 @@ class DBHelper {
       title: restaurant.name,
       url: DBHelper.urlForRestaurant(restaurant),
       map: map,
-      icon: "../img/resto-icon.png",
+      icon: "../images/resto-icon.png",
       animation: google.maps.Animation.DROP}
     );
     return marker;

@@ -35,6 +35,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
+    option.setAttribute("role","menuitem");
     select.append(option);
   });
 }
@@ -58,11 +59,11 @@ fetchCuisines = () => {
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
-
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
     option.value = cuisine;
+    option.setAttribute("role","menuitem");
     select.append(option);
   });
 }
@@ -137,29 +138,47 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
+  function createSrcs(str) {
+    let labels = new Array();
+    labels[ "small"] = 270;
+    labels[ "medium"] = 460;
+    let listSrc = new Array();
+    const idx = image.src.indexOf(".");
+    for(let label in labels){
+      listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
+    }
+    return listSrc.join();
+  };
   const li = document.createElement('li');
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('srcset', createSrcs(image.src) );
+  image.setAttribute('sizes','(min-width: 271px) 400w, 100vw' );
+  image.setAttribute('alt', `Picture of ${restaurant.name}.` );
   li.classList.add("restaurants-list-item");
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
-  const neighborhood = document.createElement('p');
+  const neighborhood = document.createElement('h3');
   neighborhood.innerHTML = restaurant.neighborhood;
+  //neighborhood.setAttribute("aria-label","Neighborhood");
   li.append(neighborhood);
 
-  const address = document.createElement('p');
+  const address = document.createElement('h4');
   address.innerHTML = restaurant.address;
+  //address.setAttribute("aria-label","Address");
   li.append(address);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute("role","link");
+  more.setAttribute('aria-label',`Views details ${restaurant.name}`);
   li.append(more)
 
   return li
@@ -176,5 +195,18 @@ addMarkersToMap = (restaurants = self.restaurants) => {
       window.location.href = marker.url
     });
     self.markers.push(marker);
+  });
+}
+
+// SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('◕‿◕ ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ಠ_ಠ ServiceWorker registration failed: ', err);
+    });
   });
 }

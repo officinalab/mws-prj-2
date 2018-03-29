@@ -48,17 +48,32 @@ fetchRestaurantFromURL = (callback) => {
 /**
  * Create restaurant HTML and add it to the webpage
 
- <img srcset="elva-fairy-320w.jpg 320w,
-             elva-fairy-480w.jpg 480w,
-             elva-fairy-800w.jpg 800w"
-     sizes="(max-width: 320px) 280px,
-            (max-width: 480px) 440px,
-            800px"
+ <img srcset="
+  /images/1-small_small.jpg 270w,
+  /images/1-medium_medium.jpg 400w,
+  /images/1-large_large.jpg 768w,
+  /images/1-xlarge_xlarge.jpg 1000w"
      src="elva-fairy-800w.jpg" alt="Elva habillée en fée">
 
 
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
+
+  function createSrcs(str) {
+    let labels = new Array();
+    labels[ "small"] = 270;
+    labels[ "medium"] = 460;
+    labels[ "large"] = 768;
+    labels[ "xlarge"] = 1000;
+
+    let listSrc = new Array();
+    const idx = image.src.indexOf(".");
+    for(let label in labels){
+      listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
+    }
+    return listSrc.join();
+  };
+
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 
@@ -68,7 +83,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-
+  image.setAttribute('srcset', createSrcs(image.src) );
+  image.setAttribute('sizes','(min-width: 769px) 50vw, 100vw' );
+  image.setAttribute('alt', `Picture of ${restaurant.name}.` );
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
@@ -86,16 +103,19 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
   for (let key in operatingHours) {
-    const row = document.createElement('tr');
+    const row = document.createElement('div'); //tr
+    row.setAttribute("role","row");
+    row.setAttribute("aria-label",`Hours on`);
 
-    const day = document.createElement('td');
+    const day = document.createElement('span');
     day.innerHTML = key;
+    day.setAttribute("role","columnheader");
     row.appendChild(day);
 
-    const time = document.createElement('td');
+    const time = document.createElement('span');
     time.innerHTML = operatingHours[key];
+    time.setAttribute("role", "cell");
     row.appendChild(time);
-
     hours.appendChild(row);
   }
 }
@@ -128,20 +148,19 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
-  name.classList.add("rewiew-name");
+  name.classList.add("review-customer");
   name.innerHTML = review.name;
   li.appendChild(name);
 
+  const rating = document.createElement('p');
+  rating.classList.add("review-rating");
+  rating.innerHTML = `Rating: ${review.rating}`;
+  li.appendChild(rating);
+
   const date = document.createElement('p');
-  date.classList.add("rewiew-date");
+  date.classList.add("review-date");
   date.innerHTML = review.date;
   li.appendChild(date);
-
-  const rating = document.createElement('p');
-  rating.classList.add("rewiew-rating");
-  rating.innerHTML = `Rating: ${review.rating}`;
-
-  li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/small.css" media="screen and (max-width: 460px)">
   <link rel="stylesheet" href="css/medium.css" media="screen and (min-width: 461px) and (max-width:768px)">
-  <link rel="stylesheet" href="css/large.css" media="screen and (min-width: 769px) and (max-width:1024px)">
+
   <!-- FAVICON -->
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -18,21 +18,23 @@
 <body>
   <header>
     <nav>
-      <h1><a href="/"><span>Restaurant Reviews</span></a></h1>
+     <h1><a href="/"><span>Restaurant Reviews</span></a></h1>
     </nav>
   </header>
   <main id="maincontent">
-    <section id="map-container" class="map">
-      <div id="map"></div>
+
+    <section id="map-container" class="map" >
+      <a id="gotofilter" href="#neighborhoods-select" class="gotofilter">Skip to filter</a>
+      <div id="map"  role="application" aria-label="google map"></div>
     </section>
-    <section class="filter">
+    <section id="filter" class="filter">
       <div class="filter-options">
         <h2>Filter Results</h2>
-          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="select by neighborhoods">
-            <option value="all">All Neighborhoods</option>
+          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" role="menu" aria-label="select by neighborhoods">
+            <option value="all" role="menuitem">All Neighborhoods</option>
           </select>
-          <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Select by cuisines">
-            <option value="all">All Cuisines</option>
+          <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" role="menu" aria-label="Select by cuisines">
+            <option value="all" role="menuitem"> Cuisines</option>
           </select>
       </div>
     </section>
@@ -42,9 +44,10 @@
   </main>
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/custom.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUu3WXHWeqmJiqdj_IcXBMWkkMd4y__3I&libraries=places&callback=initMap"></script>
   <footer id="footer" >
-    Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> by <a hef="http://rivetta.fr" target="_blank">Rivetta.fr</a> All Rights Reserved.
+    Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 
 </body>

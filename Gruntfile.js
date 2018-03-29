@@ -52,12 +52,12 @@ module.exports = function(grunt) {
             quality: 30
           },{
             name: 'medium',
-            width: '400px',
+            width: '460px',
             suffix: '_medium',
             quality: 40
           },{
             name: 'large',
-            width: '800px',
+            width: '768px',
             suffix: '_large',
             quality: 50
           },{
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           // src: ['*.{gif,jpg,png}'],
-          src: ['*.{jpg}'], //only jpg for this project
+          src: ['*.jpg'], //only jpg for this project
           cwd: 'img_original/',
           dest: 'images/'
         }]
@@ -103,6 +103,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+  grunt.registerTask('default', ['clean', 'mkdir', 'responsive_images']);
 
 };

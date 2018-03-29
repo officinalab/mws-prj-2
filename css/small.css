@@ -1,73 +1,69 @@
 /******  VP <  460 *******/
-
-@media screen and (max-width:250px){
-  nav h1 a span {
-    display:none;
-  }
-  nav h1 a:before {
-    content: "RR";
-
-  }
+nav h1 a {
+  font-size: 5vw;
 }
-
-
-
-@media screen and (max-width:365px){
-  nav h1 a {
-    line-height: 1;
-  }
-  #map-container {
-    background: blue none repeat scroll 0 0;
-    margin-top: 50px;
-  }
+#map-container {
+  margin-top: 13vw;
 }
-
-
-
 #map {
   height: 350px;
 }
-/* ====================== Header ====================== */
-
-
 
 /* ====================== Restaurant Filtering ====================== */
 
 .filter-options {
-    width: 100%;
-    min-height: 120px;
-  }
-  .filter-options h2 {
-    display: block;
+  width: 100%;
+  min-height: 120px;
 }
-  .filter-options select {
-    height: 40px;
-    margin: 5px 2.5%;
-    width: 95%;
-    max-width: 200px;
-    box-sizing: border-box;
-  }
-  .filter-options select:focus {
-    outline: 0;
-    box-shadow: 0 0 2px 2px #ff6600 ;
-  }
-  .restaurants-list {
-    display:block;
-      margin: 0 auto;
-      padding: 10px 0;
-      width: 100%;
-  }
-  .restaurants-list-item {
-    width: 96%;
+.filter-options h2 {
+  display: block;
+}
+.filter-options select {
+  height: 40px;
+  margin: 5px 2.5%;
+  width: 95%;
+  max-width: 200px;
+  box-sizing: border-box;
+}
+.filter-options select:focus {
+  outline: 0;
+  box-shadow: 0 0 2px 2px #ff6600 ;
+}
+.restaurants-list {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 0;
+  width: 100%;
+}
+.restaurants-list-item {
+  width: 96%;
 }
 .inside #map-container {
   height: 350px;
-  position: static;
+  position: relative;
   width: 100%;
+  margin-top: 0;
 }
 #restaurant-img {
   width: 100%;
 }
 #restaurant-container, #reviews-container {
   width: 96%;
+}
+
+/* Tiny adjust for very smal phone*/
+@media screen and (max-width:250px){
+  nav h1 a {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  nav h1 a span {
+    display: none;
+  }
+  nav h1 a:before {
+    content: "RR";
+  }
+  #map-container {
+    margin-top: 48px;
+  }
 }
