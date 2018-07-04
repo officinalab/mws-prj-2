@@ -129,7 +129,10 @@ resetRestaurants = (restaurants) => {
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
   restaurants.forEach(restaurant => {
-    ul.append(createRestaurantHTML(restaurant));
+    if(typeof restaurant.name != 'undefined' && restaurant.name != ""){
+      ul.append(createRestaurantHTML(restaurant));
+    }
+
   });
   addMarkersToMap();
 }
@@ -138,28 +141,33 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
-  function createSrcs(str) {
-    let labels = new Array();
-    labels[ "small"] = 270;
-    labels[ "medium"] = 460;
-    let listSrc = new Array();
-    const idx = image.src.indexOf(".");
-    for(let label in labels){
-      listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
-    }
-    return listSrc.join();
-  };
+
   const li = document.createElement('li');
-
-  const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.setAttribute('srcset', createSrcs(image.src) );
-  image.setAttribute('sizes','(min-width: 271px) 400w, 100vw' );
-  image.setAttribute('alt', `${restaurant.name}, ${restaurant.cuisine_type} restaurant in ${restaurant.neighborhood}.` );
   li.classList.add("restaurants-list-item");
-  li.append(image);
 
+  if(typeof restaurant.photograph != 'undefined' && restaurant.photograph != ""){
+
+    function createSrcs(str) {
+      let labels = new Array();
+      labels[ "small"] = 270;
+      labels[ "medium"] = 460;
+      let listSrc = new Array();
+      const idx = image.src.indexOf(".");
+      for(let label in labels){
+        listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
+      }
+      return listSrc.join();
+    }
+
+    const image = document.createElement('img');
+    image.className = 'restaurant-img';
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.setAttribute('srcset', createSrcs(image.src) );
+    image.setAttribute('sizes','(min-width: 271px) 400w, 100vw' );
+    image.setAttribute('alt', `${restaurant.name}, ${restaurant.cuisine_type} restaurant in ${restaurant.neighborhood}.` );
+
+    li.append(image);
+  }
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
@@ -189,24 +197,14 @@ createRestaurantHTML = (restaurant) => {
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
-    // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
-    google.maps.event.addListener(marker, 'click', () => {
-      window.location.href = marker.url
-    });
-    self.markers.push(marker);
-  });
-}
+    if(typeof restaurant.latlng != 'undefined' && restaurant.latlng != ""){
+       // Add marker to the map
+      const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+      google.maps.event.addListener(marker, 'click', () => {
+        window.location.href = marker.url
+      });
+      self.markers.push(marker);
+    }
 
-// SERVICE WORKER
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('◕‿◕ ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ಠ_ಠ ServiceWorker registration failed: ', err);
-    });
   });
 }

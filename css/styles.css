@@ -32,7 +32,7 @@ ul, li {
 	color: #333;
 }
 a {
-	color: #cc5200;
+	color: #c95100;
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -70,14 +70,14 @@ footer a {
   text-decoration: underline;
 }
 footer a:hover, footer a:focus, footer a:active{
-  color: #cc5200;
+  color: #c95100;
   text-decoration: underline;
 }
 /* ====================== Navigation ====================== */
 header {
   width: 100%;
-  border-top: 1px solid #cc5200;
-  border-bottom: 1px solid #cc5200;
+  border-top: 1px solid #c95100;
+  border-bottom: 1px solid #c95100;
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -93,6 +93,7 @@ nav.title{
 }
 nav h1 {
   margin: auto;
+  text-align:center;
 }
 nav h1 a {
   min-height : 48px;
@@ -138,7 +139,7 @@ nav h1 a {
   width: auto;
   height: 28px;
   top: -9999px;
-  background-color: #cc5200;
+  background-color: #c95100;
   color: #fff;
   font-size: 1.2rem;
   padding: 10px;
@@ -166,8 +167,8 @@ nav h1 a {
   align-items: center;
   padding-top: 5px;
   text-align: center;
-  border-top: 1px solid #cc5200;
-  border-bottom: 1px solid #cc5200;
+  border-top: 1px solid #c95100;
+  border-bottom: 1px solid #c95100;
 }
 .filter-options h2 {
   display: inline-block;
@@ -216,6 +217,7 @@ nav h1 a:active,
   padding: 0 0 10px 0;
   text-align: center;
   max-width: 400px;
+  width:100%;
 }
 .restaurants-list .restaurant-img {
   background-color: #ccc;
@@ -226,7 +228,7 @@ nav h1 a:active,
   width: 100%;
 }
 .restaurants-list-item h2 {
-  color: #cc5200;
+  color: #c95100;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: bold;
@@ -241,7 +243,7 @@ nav h1 a:active,
   color: #333;
 }
 .restaurants-list-item a {
-  background-color: #cc5200;
+  background-color: #c95100;
   /* border-bottom: 3px solid #eee; */
   color: #fff;
   display: inline-block;
@@ -279,7 +281,7 @@ nav h1 a:active,
   position: absolute;
 }
 #restaurant-name {
-  color: #cc5200;
+  color: #c95100;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -324,7 +326,7 @@ nav h1 a:active,
   padding: 30px 2% 80px 2%;
 }
 #reviews-container h3 {
-  color: #cc5200;
+  color: #c95100;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -370,4 +372,8 @@ nav h1 a:active,
 }
 #restaurant-hours span {
   color: #fff;
+}
+
+.nomap{
+  display:none;
 }

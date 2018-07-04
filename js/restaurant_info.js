@@ -34,6 +34,7 @@ fetchRestaurantFromURL = (callback) => {
     callback(error, null);
   } else {
     DBHelper.fetchRestaurantById(id, (error, restaurant) => {
+      console.log(restaurant);
       self.restaurant = restaurant;
       if (!restaurant) {
         console.error(error);
@@ -58,21 +59,8 @@ fetchRestaurantFromURL = (callback) => {
 
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
+  console.log("fill: ",restaurant);
 
-  function createSrcs(str) {
-    let labels = new Array();
-    labels[ "small"] = 270;
-    labels[ "medium"] = 460;
-    labels[ "large"] = 768;
-    labels[ "xlarge"] = 1000;
-
-    let listSrc = new Array();
-    const idx = image.src.indexOf(".");
-    for(let label in labels){
-      listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
-    }
-    return listSrc.join();
-  };
 
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
@@ -80,12 +68,32 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
-  const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.setAttribute('srcset', createSrcs(image.src) );
-  image.setAttribute('sizes','(min-width: 769px) 50vw, 100vw' );
-  image.setAttribute('alt', `${restaurant.name}, ${restaurant.cuisine_type} restaurant in ${restaurant.neighborhood}.` );
+
+  if(typeof restaurant.photograph != 'undefined' && restaurant.photograph != ""){
+    function createSrcs(str) {
+      let labels = new Array();
+      labels[ "small"] = 270;
+      labels[ "medium"] = 460;
+      labels[ "large"] = 768;
+      labels[ "xlarge"] = 1000;
+
+      let listSrc = new Array();
+      const idx = image.src.indexOf(".");
+      for(let label in labels){
+        listSrc.push(`${str.slice(0, idx)}-${label}_${label}${str.slice(idx)} ${labels[label]}w`);
+      }
+      return listSrc.join();
+    }
+
+    const image = document.getElementById('restaurant-img');
+    image.className = 'restaurant-img';
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.setAttribute('srcset', createSrcs(image.src) );
+    image.setAttribute('sizes','(min-width: 769px) 50vw, 100vw' );
+    image.setAttribute('alt', `${restaurant.name}, ${restaurant.cuisine_type} restaurant in ${restaurant.neighborhood}.` );
+  }
+
+
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 

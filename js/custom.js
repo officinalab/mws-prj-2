@@ -1,3 +1,22 @@
+
+// SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('◕‿◕ ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ಠ_ಠ ServiceWorker registration failed: ', err);
+    });
+  });
+}
+const dbPromise = self.idb.open('rr', 1, function(upgradeDb) {
+  var store = upgradeDb.createObjectStore('keyval');
+  store.createIndex('by-id', 'id');
+}); // CREATE IDB
+
+
 // link to filter (skip-map and return to top)
 function goto(element){
     const target = document.getElementById(element);
